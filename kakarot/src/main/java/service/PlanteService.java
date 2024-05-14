@@ -1,8 +1,10 @@
+package service;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import com.potager.kakarot.entities.Plantes;
+import com.potager.kakarot.entities.Plante;
 import com.potager.kakarot.repository.PlanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ public class PlanteService {
         this.planteRepository = planteRepository;
     }
 
-    public Plantes findPlanteByName(String name) {
+    public Plante findPlanteByName(String name) {
         return planteRepository.findByName(name);
     }
 
