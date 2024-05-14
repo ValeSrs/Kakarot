@@ -6,7 +6,6 @@ package service;
  */
 import entities.Plantes;
 import repository.PlanteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -15,7 +14,6 @@ public class PlanteService {
 
     private final PlanteRepository planteRepository;
 
-    @Autowired
     public PlanteService(PlanteRepository planteRepository) {
         this.planteRepository = planteRepository;
     }

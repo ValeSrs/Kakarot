@@ -9,7 +9,7 @@ import entities.Plantes;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface PlanteRepository extends CrudRepository<Plantes, Long> {
+public interface PlanteRepository extends CrudRepository<Plantes, Integer> {
 
     Plantes findByName(String name);
 
