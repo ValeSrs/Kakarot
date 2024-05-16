@@ -41,7 +41,7 @@ public class ControleurKakarot {
         String legume = extractName(imagePath);
         System.out.println("extractLegume : " + legume);
 
-        Plantes planteDuMois = planteService.findByNom("courgette");
+        Plantes planteDuMois = planteService.findByNom(extractName(imagePath));
         System.out.println("Astuce :" + planteDuMois.getAstuce());
 
         model.addAttribute("nom", planteDuMois.getNom());
@@ -81,7 +81,7 @@ public class ControleurKakarot {
         String imagePath = imagePropertiesService.getImagePathForNextMonth(currentMonth.name());
         model.addAttribute("imagePath", imagePath);
 
-        Plantes planteDuMoisSuivant = planteService.findByNom("courgette"); // Remplacez "courgette" par le nom de la plante du mois suivant
+        Plantes planteDuMoisSuivant = planteService.findByNom(extractName(imagePath)); // Remplacez "courgette" par le nom de la plante du mois suivant
         model.addAttribute("nom", planteDuMoisSuivant.getNom());
         model.addAttribute("astuce", planteDuMoisSuivant.getAstuce());
         model.addAttribute("planter", planteDuMoisSuivant.getPlanter());
