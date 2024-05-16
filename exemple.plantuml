@@ -1,0 +1,57 @@
+@startuml
+title Diagramme de Séquence - Initialisation et Lancement de l'Application par le Jardinier avec JSP
+
+actor Jardinier
+participant Kakarot
+participant ControleurKakarot
+participant VueJSP
+participant JardinierModel
+participant Plantes
+participant Instructions
+
+Jardinier -> Kakarot: Lance l'application
+activate Kakarot
+
+Kakarot -> ControleurKakarot: Initialise et lance Application()
+activate ControleurKakarot
+
+ControleurKakarot -> VueJSP: Affiche interface utilisateur JSP
+activate VueJSP
+
+ControleurKakarot -> JardinierModel: Crée instance de Jardinier
+activate JardinierModel
+
+JardinierModel -> Plantes: Ajoute nouvelle plante()
+activate Plantes
+Plantes -> Instructions: Contient
+activate Instructions
+deactivate Instructions
+deactivate Plantes
+
+JardinierModel -> Plantes: Affiche plantes()
+activate Plantes
+deactivate Plantes
+
+JardinierModel -> Plantes: Recherche plante()
+activate Plantes
+deactivate Plantes
+
+JardinierModel -> Plantes: Modifie plante()
+activate Plantes
+Plantes --> VueJSP: Affiche formulaire de modification
+deactivate Plantes
+activate VueJSP
+VueJSP --> JardinierModel: Soumet formulaire de modification
+deactivate VueJSP
+activate JardinierModel
+deactivate JardinierModel
+
+JardinierModel -> Plantes: Supprime plante()
+activate Plantes
+deactivate Plantes
+
+ControleurKakarot -> VueJSP: Affiche les données
+deactivate VueJSP
+deactivate ControleurKakarot
+deactivate Kakarot
+@enduml
