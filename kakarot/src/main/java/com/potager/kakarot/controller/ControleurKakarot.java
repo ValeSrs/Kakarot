@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.potager.kakarot.service.ImagePropertiesService;
 import com.potager.kakarot.service.PlanteService;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/")
@@ -47,10 +50,12 @@ public class ControleurKakarot {
         model.addAttribute("recolter", planteDuMois.getRecolter());
         model.addAttribute("region", planteDuMois.getRegion());
 
+
+
         return "plantes-mois";
     }
 
-    @GetMapping("/plantes-mois-suivant")
+    /*@GetMapping("/plantes-mois-suivant")
     public String descriptionSuivant(Model model) {
         Month currentMonth = LocalDate.now().getMonth();
         String imagePath = imagePropertiesService.getImagePathForMonth(currentMonth.name());
@@ -69,6 +74,21 @@ public class ControleurKakarot {
         model.addAttribute("region", planteDuMois.getRegion());
 
         return "plantes-mois-suivant";
+    }*/
+    @GetMapping("/plantes-mois-suivant")
+    public String descriptionSuivant(Model model) {
+        Month currentMonth = LocalDate.now().getMonth();
+        String imagePath = imagePropertiesService.getImagePathForNextMonth(currentMonth.name());
+        model.addAttribute("imagePath", imagePath);
+
+        Plantes planteDuMoisSuivant = planteService.findByNom("courgette"); // Remplacez "courgette" par le nom de la plante du mois suivant
+        model.addAttribute("nom", planteDuMoisSuivant.getNom());
+        model.addAttribute("astuce", planteDuMoisSuivant.getAstuce());
+        model.addAttribute("planter", planteDuMoisSuivant.getPlanter());
+        model.addAttribute("recolter", planteDuMoisSuivant.getRecolter());
+        model.addAttribute("region", planteDuMoisSuivant.getRegion());
+
+        return "plantes-mois-suivant";
     }
 
 
@@ -82,4 +102,24 @@ public class ControleurKakarot {
         // Retourner le premier élément qui est le nom du fichier sans l'extension
         return nameParts[0];
     }
+
+    @GetMapping("/ajouterPlante")
+    public String afficherFormulaireAjout(Model model) {
+        model.addAttribute("plante", new Plantes());
+        return "ajouterPlante"; // Le nom du fichier HTML Thymeleaf pour le formulaire d'ajout
+    }
+
+    @GetMapping("/ajoutPlanteOK")
+    public String afficherFormulaireAjoutOK(Model model) {
+        model.addAttribute("plante", new Plantes());
+        return "ajoutPlanteOK"; // on confirme que la plante a été ajouté
+    }
+
+    @PostMapping("/ajouterPlante")
+    public String ajouterPlante(@ModelAttribute Plantes plante, RedirectAttributes redirectAttributes) {
+        planteService.savePlante(plante);
+        redirectAttributes.addFlashAttribute("message", "La plante a été bien ajouté !");
+        return "ajoutPlanteOK"; //
+    }
+
 }

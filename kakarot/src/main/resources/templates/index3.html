@@ -10,8 +10,17 @@
     <body>
 
         <header>
-            <button th:text="'Kakarot'" onclick="alert('Kakarot!')" class="kakarot-button"></button>
-            <button th:text="'Recherche'" onclick="alert('Recherche!')" class="search-button"></button>
+            <button class="kakarot-button">
+                <a th:href="@{/}" class="kakarot-button">KAKAROT</a>
+            </button>
+            <button class="search-button">
+                <a th:href="@{/recherche-plantes}" class="search-button">RECHERCHER</a>
+            </button>
+
+            <button class="search-button">
+                <a th:href="@{/ajouterPlante}" class="search-button">AJOUTER</a>
+            </button>
+
 
         </header>
 
@@ -32,7 +41,9 @@
         <div class="plantes-mois-suivant">
             <h2>Plante du mois suivant</h2>
             <!-- Utilisez une autre méthode pour récupérer l'image du mois suivant -->
+            <!--<img th:src="@{/img/laitue.jpg}" alt="Image plante du mois suivant">-->
             <img th:src="@{/img/laitue.jpg}" alt="Image plante du mois suivant">
+
             <button th:text="'Description plante du mois suivant'" th:onclick="|window.location.href='@{/plantes-mois-suivant}'|" class="search-button"></button>
 
         </div>

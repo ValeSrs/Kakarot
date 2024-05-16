@@ -68,15 +68,11 @@ package modele <<Folder>> {
 
 package vue <<Folder>> {
     interface Vue {
-        Interfaçage avec l'utilisateur.
-    }
-class Vue implements vue.Vue {
-            --
-            --
+        Interfaçage avec l'utilisateur.            
             Interfaçage graphique.
-        }
+    }  
     interface Vue {
-        AfficherVue()
+        RechercherVue()
         ModifierVue()
         SupprimerVue()
         AjouterVue()

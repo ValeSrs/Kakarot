@@ -20,7 +20,8 @@
             <p th:text=" 'planter : ' + ${planter}">
             <p th:text=" 'recolter : ' + ${recolter}">
             <p th:text=" ' region : ' + ${region}">
-                <button th:text="'Recherche'" th:onclick="|window.location.href='@{/plantes-mois}'|" class="search-button"></button>
+                <!--<button th:text="'Recherche'" th:onclick="|window.location.href='@{/plantes-mois}'|" class="search-button"></button>-->
+                <a th:href="@{'/plantes-mois-suivant?month=' + ${nextMonth}}" class="search-button">Description plante du mois suivant</a>
 
         </div>
 
