@@ -1,8 +1,12 @@
 package com.potager.kakarot.controller;
 
+<<<<<<< HEAD
 import com.potager.kakarot.entities.Plantes;
 import java.time.LocalDate;
 import java.time.Month;
+=======
+import service.PlanteService;
+>>>>>>> testWebInf
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
