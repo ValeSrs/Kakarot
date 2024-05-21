@@ -11,7 +11,6 @@ class ControleurKakarot {
 
 Kakarot --> ControleurKakarot
 ControleurKakarot --> modele.Plantes
-ControleurKakarot --> modele.Instructions
 ControleurKakarot --> vue.Vue
 package modele <<Folder>> {
     class Jardinier{
@@ -25,45 +24,14 @@ package modele <<Folder>> {
     class Plantes{
         nom string
         catégories string 
-        List Departements
-    }
-
-    class Instructions {
-        enum mois plantation
-        enum mois recolte
+        région string
+        planter string
+        recolter string
         astuce string
     }
 
-    enum Mois{
-        JANVIER, FEVRIER, MARS, AVRIL, MAI, JUIN, 
-        JUILLET, AOUT, SEPTEMBRE, OCTOBRE, NOVEMBRE, DECEMBRE
-    }
-
-    enum Départements{
-        AIN, AISNE, ALLIER, ALPES-DE-HAUTE-PROVENCE, 
-        HAUTES-ALPES, ALPES-MARITIMES, ARDÈCHE, ARDENNES, 
-        ARIÈGE, AUBE, AUDE, AVEYRON, BOUCHES-DU-RHÔNE, CALVADOS, 
-        CANTAL, CHARENTE, CHARENTE-MARITIME, CHER, CORRÈZE, 
-        CÔTE-D'OR, CÔTES-D'ARMOR, CREUSE, DORDOGNE, DOUBS, 
-        DRÔME, EURE, EURE-ET-LOIR, FINISTÈRE, GARD, HAUTE-GARONNE, 
-        GERS, GIRONDE, HÉRAULT, ILLE-ET-VILAINE, INDRE, 
-        INDRE-ET-LOIRE, ISÈRE, JURA, LANDES, LOIR-ET-CHER, 
-        LOIRE, HAUTE-LOIRE, LOIRE-ATLANTIQUE, LOIRET, LOT, 
-        LOT-ET-GARONNE, LOZÈRE, MAINE-ET-LOIRE, MANCHE, MARNE, 
-        HAUTE-MARNE, MAYENNE, MEURTHE-ET-MOSELLE, MEUSE, MORBIHAN, 
-        MOSELLE, NIÈVRE, NORD, OISE, ORNE, PAS-DE-CALAIS, 
-        PUY-DE-DÔME, PYRÉNÉES-ATLANTIQUES, HAUTES-PYRÉNÉES, 
-        PYRÉNÉES-ORIENTALES, BAS-RHIN, HAUT-RHIN, RHÔNE, 
-        HAUTE-SAÔNE, SAÔNE-ET-LOIRE, SARTHE, SAVOIE, HAUTE-SAVOIE, 
-        PARIS, SEINE-MARITIME, SEINE-ET-MARNE, YVELINES, 
-        DEUX-SÈVRES, SOMME, TARN, TARN-ET-GARONNE, VAR, 
-        VAUCLUSE, VENDÉE, VIENNE, HAUTE-VIENNE, VOSGES, 
-        YONNE, TERRITOIRE DE BELFORT, ESSONNE, HAUTS-DE-SEINE, 
-        SEINE-SAINT-DENIS, VAL-DE-MARNE, VAL-D'OISE
-    }
-
     Plantes "n" *-->"1" Jardinier
-    Instructions "1" *-->"1" Plantes : contient
+   
 }
 
 package vue <<Folder>> {
@@ -77,5 +45,16 @@ package vue <<Folder>> {
         SupprimerVue()
         AjouterVue()
     }
+
+}
+
+
+    
+
+
+ControleurKakarot --> database.Plantes
+
+
+@enduml
 }
 @enduml
